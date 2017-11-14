@@ -78,6 +78,7 @@ public class CustomerSearchDBAccess {
 			}
 
 
+
 	        }catch(SQLException e) {
 		        System.out.println("DB切断時にエラーが発生しました（顧客検索 by tel）");
 		       e.printStackTrace();
