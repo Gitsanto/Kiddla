@@ -1,0 +1,14 @@
+●ソフトウェアコード作成時の注意点
+　
+　「顧客情報を検索する」機能のソフトウェアコード作成は次のように行います。
+
+
+　　・Customerクラスはmodelパッケージに新規作成する
+
+　　・CustomerSearchDBAccessクラスはdaoパッケージに新規作成する
+　　
+　　・CustomerSearchActionクラスはactionパッケージに新規作成する
+　　
+　　・KiddaLaControllerクラスはcontrolパッケージにすでに存在する同じ名前のクラス
+　　　にcustomerSearch()メソッドを追加する
+
