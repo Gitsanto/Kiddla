@@ -51,29 +51,30 @@ public class CustomerSearchDBAccess {
 
 //	//list by tel
 	public ArrayList<Customer> searchCustomerByTel(String Tel){
-		Connection con = createConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ArrayList<Customer> list = new ArrayList<Customer>();
+		Connection conByTel = createConnection();
+		PreparedStatement pstmtByTel = null;
+		ResultSet rsByTel = null;
+		ArrayList<Customer> listByTel = new ArrayList<Customer>();
 
 		try {
-			if(con != null) {
+			if(conByTel != null) {
 
-				String sql ="select * from customer where tel = "+Tel+";";
-				pstmt = con.prepareStatement(sql);
-				rs= pstmt.executeQuery();
+				String sqlByTel ="select  custid,custname,kana,tel,address  from customer where tel = "+Tel+";";
+				pstmtByTel = conByTel.prepareStatement(sqlByTel);
+
+				rsByTel= pstmtByTel.executeQuery();
 
 
-			while(rs.next()== true) {
+			while(rsByTel.next()== true) {
 
-					int  id= rs.getInt("custid");
-					String name= rs.getString("custname");
-					String kana= rs.getString("kana");
-					String tel= rs.getString("tel");
-					String address= rs.getString("address");
+					int  id= rsByTel.getInt("custid");
+					String name= rsByTel.getString("custname");
+					String kana= rsByTel.getString("kana");
+					String tel= rsByTel.getString("tel");
+					String address= rsByTel.getString("address");
 
 			Customer cusData = new Customer(id,name, kana, tel, address);
-				list.add(cusData);
+				listByTel.add(cusData);
 				}
 			}
 
@@ -85,50 +86,51 @@ public class CustomerSearchDBAccess {
 
 	         }finally {
 		       try{
-			    if(rs !=null) {
-				   rs.close();
+			    if(rsByTel !=null) {
+				   rsByTel.close();
 			    }
 		      }catch(SQLException e) {
 			     System.out.println("DB切断時にエラーが発生しました");
 			     e.printStackTrace();
 		        }try {
-			    if(pstmt != null) {
-				pstmt.close();
+			    if(pstmtByTel != null) {
+			    	pstmtByTel.close();
 			    }
 		       }catch(SQLException e) {
 			     System.out.println("DB切断時にエラーが発生しました");
 			    e.printStackTrace();
 		      }
 	         }
-		closeConnection(con);
-		return list;
+		closeConnection(conByTel);
+		return listByTel;
 		}
 
 
 	//list by kana
 		public ArrayList<Customer> searchCustomerByKana(String Kana){
 			Connection con = createConnection();
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			ArrayList<Customer> list = new ArrayList<Customer>();
+			PreparedStatement pstmtByKana = null;
+			ResultSet rsByKana = null;
+			ArrayList<Customer> listByKana = new ArrayList<Customer>();
 
 			try {
 				if(con != null) {
 
-					String sql ="select * from customer where kana = "+Kana+";";
-					pstmt = con.prepareStatement(sql);
-					rs= pstmt.executeQuery();
+					String sqlByKana = "select custid,custname,kana,tel,address from customer where kana like ?";
+					pstmtByKana = con.prepareStatement(sqlByKana);
+				    pstmtByKana.setString(1, "%"+Kana+"%");
+					rsByKana= pstmtByKana.executeQuery();
 
-				while(rs.next()== true) {
-					System.out.println(Kana);
-						int  id= rs.getInt("custid");
-						String name= rs.getString("custname");
-						String kana= rs.getString("kana");
-						String tel= rs.getString("tel");
-						String address= rs.getString("address");
-						System.out.println(kana);
+				while(rsByKana.next()== true) {
+
+						int  id= rsByKana.getInt("custid");
+						String name= rsByKana.getString("custname");
+						String kana= rsByKana.getString("kana");
+						String tel= rsByKana.getString("tel");
+						String address= rsByKana.getString("address");
+
 				Customer cusData = new Customer(id,name, kana, tel, address);
-					list.add(cusData);
+					listByKana.add(cusData);
 					}
 				}
 
@@ -139,15 +141,15 @@ public class CustomerSearchDBAccess {
 
 		         }finally {
 			       try{
-				    if(rs !=null) {
-					   rs.close();
+				    if(rsByKana !=null) {
+					   rsByKana.close();
 				    }
 			      }catch(SQLException e) {
 				     System.out.println("DB切断時にエラーが発生しました");
 				     e.printStackTrace();
 			        }try {
-				    if(pstmt != null) {
-					pstmt.close();
+				    if(pstmtByKana != null) {
+					pstmtByKana.close();
 				    }
 			       }catch(SQLException e) {
 				     System.out.println("DB切断時にエラーが発生しました");
@@ -156,7 +158,7 @@ public class CustomerSearchDBAccess {
 		     }
 
     closeConnection(con);
-    return list;
+    return listByKana;
 	}
 
 }

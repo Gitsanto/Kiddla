@@ -66,5 +66,6 @@ public class KiddaLaController {
 
 	public static String[][] customerSearch(String[] data) {
 		return CustomerSearchAction.execute(data);
+
 	}
 }

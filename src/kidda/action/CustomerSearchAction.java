@@ -8,23 +8,32 @@ import kidda.model.OrderControlUtility;
 
 public class CustomerSearchAction {
 	String[] data;
-	static String[][] tableData  = new String[4][4];;
+	static String[][] tableData  = new String[4][4];
+	static ArrayList<Customer> list;
 
 
 public static String[][] execute(String[] data) {
 	CustomerSearchDBAccess  DAO = new CustomerSearchDBAccess();
 
-	if(data[1] != "") {
-		ArrayList<Customer> list = DAO.searchCustomerByKana(data[1]);
-//		ArrayList<Customer> list = DAO.searchCustomerByTel(data[0]);
-		tableData = OrderControlUtility.customerToArray(list);
-	}else {
-		ArrayList<Customer> list = DAO.searchCustomerByTel(data[0]);
-//		ArrayList<Customer> list = DAO.searchCustomerByKana(data[1]);
+	if(!data[0].equals("")) {
 
-		tableData = OrderControlUtility.customerToArray(list);
+	     list = DAO.searchCustomerByTel(data[0]);
+
+
+	}else{
+		data[1]=data[1].replaceAll(" ", "");
+		data[1]=data[1].replaceAll("  ", "");
+
+		if(!data[1].equals("")) {
+
+	     list = DAO.searchCustomerByKana(data[1]);
+		}
+
 	}
-	return tableData;
+
+	return tableData = OrderControlUtility.customerToArray(list);
+
+
 }
 
 
