@@ -48,7 +48,7 @@ public class CustomerSearchFrame extends JFrame implements ActionListener {
 	private JTable table;
 
 	private JButton btnReturn;
-	String Tel ="";
+	String[][] Tel =null;
 
 	public CustomerSearchFrame() {
 
@@ -153,13 +153,15 @@ public class CustomerSearchFrame extends JFrame implements ActionListener {
 
 
 				if(tableData != null) {
-
+					Tel = tableData;
 					tableModel.setRowCount(0);
 
 					for(String[] rowData : tableData) {
 
 						tableModel.addRow(rowData);
+
 					}
+
 
 				} else {
 
@@ -198,10 +200,11 @@ public class CustomerSearchFrame extends JFrame implements ActionListener {
 			String name = (String)table.getValueAt(rowIndex, 1);
 			String kana = (String)table.getValueAt(rowIndex, 2);
 			String addr = (String)table.getValueAt(rowIndex, 3);
+			String Telonly = Tel[Integer.parseInt(custId)-1][4];
 
 			try {
 
-				Customer customer = KiddaLaController.orderInputDisplay(custId,name,kana,Tel,addr);
+				Customer customer = KiddaLaController.orderInputDisplay(custId,name,kana,Telonly,addr);
 				new OrderInputFrame(customer);
 
 			} catch (Exception ex) {
