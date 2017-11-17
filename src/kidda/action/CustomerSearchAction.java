@@ -7,12 +7,12 @@ import kidda.model.Customer;
 import kidda.model.OrderControlUtility;
 
 public class CustomerSearchAction {
-	String[] data;
-	static String[][] tableData  = new String[4][4];
-	static ArrayList<Customer> list;
+
+	String[][] tableData  = null;
+	ArrayList<Customer> list = null;
 
 
-public static String[][] execute(String[] data) {
+public  String[][] execute(String[] data)throws Exception {
 	CustomerSearchDBAccess  DAO = new CustomerSearchDBAccess();
 
 	if(!data[0].equals("")) {
@@ -28,11 +28,13 @@ public static String[][] execute(String[] data) {
 
 	     list = DAO.searchCustomerByKana(data[1]);
 		}
+		 list = DAO.searchCustomerByKana(data[1]);
 
 	}
-
-	return tableData = OrderControlUtility.customerToArray(list);
-
+	if(list != null && list.size() !=0) {
+	 tableData = OrderControlUtility.customerToArray(list);
+	}
+	return tableData;
 
 }
 

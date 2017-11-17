@@ -31,9 +31,11 @@ public class KiddaLaController {
 		action.execute();
 	}
 
-	public static Customer orderInputDisplay(String custId) throws Exception {
+	public static Customer orderInputDisplay(String custId,String name, String kana,String tel, String addr) throws Exception {
+
 		Customer customer = new Customer(
-				9999, "ダミー顧客", "ダミーコキャク", "99999999999", "東京都千代田区神田小川町9-9-9");
+								Integer.parseInt(custId),name,kana,tel,addr);
+
 		return customer;
 	}
 
@@ -64,8 +66,11 @@ public class KiddaLaController {
 		return 0;
 	}
 
-	public static String[][] customerSearch(String[] data) {
-		return CustomerSearchAction.execute(data);
+	public static String[][] customerSearch(String[] data) throws Exception{
+	     CustomerSearchAction search = new CustomerSearchAction();
+	     String[][] searchData = search.execute(data);
+	     return searchData;
+
 
 	}
 }

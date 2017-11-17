@@ -9,11 +9,11 @@
 
 package kidda.dao;
 
-import kidda.model.Serializable;
+import kidda.model.Customer;
 
 public class OrderInputDisplayDBAccess {
 
-	public Serializable searchCustomerById(int custId) throws Exception {
+	public Customer searchCustomerById(int custId) throws Exception {
 		return null;
 	}
 }

@@ -114,11 +114,16 @@ public class CustomerSearchDBAccess {
 			ArrayList<Customer> listByKana = new ArrayList<Customer>();
 
 			try {
-				if(con != null) {
-
+			   if(con != null) {
+			   if(Kana != "") {
 					String sqlByKana = "select custid,custname,kana,tel,address from customer where kana like ?";
 					pstmtByKana = con.prepareStatement(sqlByKana);
-				    pstmtByKana.setString(1, "%"+Kana+"%");
+					pstmtByKana.setString(1, "%"+Kana+"%");
+					}else {
+						String sqlByKana = "select custid,custname,kana,tel,address from customer";
+						pstmtByKana = con.prepareStatement(sqlByKana);
+					}
+
 					rsByKana= pstmtByKana.executeQuery();
 
 				while(rsByKana.next()== true) {

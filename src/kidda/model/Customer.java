@@ -1,6 +1,7 @@
 package kidda.model;
+import java.io.Serializable;
 
-public class Customer implements Serializable {
+public class Customer implements Serializable{
 
 	int custId;
 	String custName;
@@ -9,6 +10,7 @@ public class Customer implements Serializable {
 	String address;
 
 	public Customer() {
+
 
 	}
 

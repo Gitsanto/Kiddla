@@ -7,6 +7,7 @@
  * �C�����@�F
  */
 package kidda;
+
 import kidda.view.MainMenuFrame;
 
 public class KiddaLaEntry {

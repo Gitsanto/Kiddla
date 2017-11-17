@@ -9,11 +9,11 @@
 
 package kidda.action;
 
-import kidda.model.Serializable;
+import kidda.model.Customer;
 
 public class OrderInputDisplayAction {
 
-	public Serializable execute(String custId) throws Exception {
+	public Customer execute(String custId) throws Exception {
 		return null;
 	}
 }

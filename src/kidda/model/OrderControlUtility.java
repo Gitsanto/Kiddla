@@ -20,7 +20,7 @@ public class OrderControlUtility {
 	public static String[][] customerToArray(ArrayList<Customer> list) {
 
 		int listSize = list.size();
-		String[][] tableData = new String[listSize][4];
+		String[][] tableData = new String[listSize][5];
 
 		for(int i = 0; i < listSize; i++) {
 
@@ -29,6 +29,7 @@ public class OrderControlUtility {
 			tableData[i][1] = customer.getCustName();
 			tableData[i][2] = customer.getKana();
 			tableData[i][3] = customer.getAddress();
+			tableData[i][4] = customer.getTel();
 		}
 
 		return tableData;

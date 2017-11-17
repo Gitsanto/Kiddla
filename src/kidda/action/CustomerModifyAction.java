@@ -9,11 +9,11 @@
 
 package kidda.action;
 
-import kidda.model.Serializable;
+import kidda.model.Customer;
 
 public class CustomerModifyAction {
 
-	public int execute(Serializable customer) throws Exception {
+	public int execute(Customer customer) throws Exception {
 
 		return 0;
 	}

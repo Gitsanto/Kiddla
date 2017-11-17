@@ -9,11 +9,11 @@
 
 package kidda.dao;
 
-import kidda.model.Serializable;
+import kidda.model.Customer;
 
 public class CustomerModifyDBAccess {
 
-	public int modifyCustomer(Serializable customer) throws Exception {
+	public int modifyCustomer(Customer customer) throws Exception {
 
 		return 0;
 	}

@@ -48,8 +48,10 @@ public class CustomerSearchFrame extends JFrame implements ActionListener {
 	private JTable table;
 
 	private JButton btnReturn;
+	String Tel ="";
 
 	public CustomerSearchFrame() {
+
 
 		OrderControlUtility.setIconImage(this);
 
@@ -149,6 +151,7 @@ public class CustomerSearchFrame extends JFrame implements ActionListener {
 
 				String[][] tableData = KiddaLaController.customerSearch(data);
 
+
 				if(tableData != null) {
 
 					tableModel.setRowCount(0);
@@ -192,15 +195,19 @@ public class CustomerSearchFrame extends JFrame implements ActionListener {
 
 			int rowIndex = table.getSelectedRow();
 			String custId = (String)table.getValueAt(rowIndex, 0);
+			String name = (String)table.getValueAt(rowIndex, 1);
+			String kana = (String)table.getValueAt(rowIndex, 2);
+			String addr = (String)table.getValueAt(rowIndex, 3);
 
 			try {
 
-				Customer customer = KiddaLaController.orderInputDisplay(custId);
+				Customer customer = KiddaLaController.orderInputDisplay(custId,name,kana,Tel,addr);
 				new OrderInputFrame(customer);
 
 			} catch (Exception ex) {
 
 				OrderControlUtility.systemErrorMessage(CustomerSearchFrame.this, ex);
+
 			}
 		}
 	}
