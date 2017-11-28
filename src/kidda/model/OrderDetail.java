@@ -19,6 +19,10 @@ public class OrderDetail {
 	Tax tax;
 	int status;
 
+	public OrderDetail() {
+
+	}
+
 	public OrderDetail(long no, Customer customer, Item item, String orderDate,
 			int quantity, Tax tax, int status) {
 	}

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import kidda.action.CustomerSearchAction;
 import kidda.action.CustomerSearchDisplayAction;
+import kidda.action.ItemMenuDisplayAction;
 import kidda.action.MainMenuDisplayAction;
 import kidda.action.PrintOutAction;
 import kidda.model.Customer;
@@ -40,7 +41,15 @@ public class KiddaLaController {
 	}
 
 	public static String[][] itemMenuDisplay() throws Exception {
-		return null;
+		ItemMenuDisplayAction itemMenu = new ItemMenuDisplayAction();
+		String[][] itemMenuDisplay = itemMenu.execute();
+
+		return itemMenuDisplay;
+
+
+
+
+		//return null;
 	}
 
 	public static ArrayList<OrderDetail> deliveryConfirm(String custId)
